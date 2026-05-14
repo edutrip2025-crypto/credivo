@@ -14,7 +14,13 @@ export function App() {
   return (
     <div className="shell">
       <header className="header">
-        <h1>Assessment Console (React)</h1>
+        <div className="brand">
+          <img src="/assessment/credivo_logo.png" alt="Credivo" />
+          <div>
+            <span>Credivo</span>
+            <h1>Assessment Console</h1>
+          </div>
+        </div>
         <div className="tabs">
           <button onClick={() => setView("provider")} className={view === "provider" ? "active" : ""}>Provider</button>
           <button onClick={() => setView("student")} className={view === "student" ? "active" : ""}>Student</button>

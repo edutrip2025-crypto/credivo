@@ -7,9 +7,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     app_env: str = "development"
-    app_name: str = "Classagon API"
+    app_name: str = "Credivo Assessment API"
     app_base_url: str = "http://localhost:8000"
-    database_url: str = "sqlite:///./certora.db"
+    database_url: str = "sqlite:///./credivo.db"
     jwt_secret_key: str = "change_me"
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 120
@@ -46,8 +46,8 @@ class Settings(BaseSettings):
     smtp_port: int = 587
     smtp_username: str = ""
     smtp_password: str = ""
-    smtp_sender: str = "noreply@certora.in"
-    admin_emails: str = "admin@certora.in,admin@certora.com"
+    smtp_sender: str = "noreply@credivo.local"
+    admin_emails: str = "admin@credivo.local"
     identity_verify_enforce: bool = True
     identity_verify_timeout_seconds: int = 15
     identity_verify_api_key: str = ""

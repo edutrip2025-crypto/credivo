@@ -45,6 +45,25 @@ npm run build
 
 The backend serves the built frontend from `app/web_assessment_react/dist`.
 
+## Vercel Deployment
+
+The repo is Vercel-ready:
+
+- `api/index.py` exposes the FastAPI app as the serverless entrypoint.
+- `vercel.json` builds the React assessment frontend before deploy.
+- `/` redirects to `/assessment`.
+
+Required Vercel environment variables:
+
+- `APP_ENV=production`
+- `AUTH_MODE=firebase` for production auth, or `dummy` only for internal testing
+- `DATABASE_URL` with a Postgres connection string, for example Neon/Supabase
+- `JWT_SECRET_KEY`
+- Firebase variables from `.env.example`
+- Bunny or other object storage variables if evidence/media upload is enabled
+
+SQLite is intentionally blocked on Vercel. Use Postgres for production.
+
 ## Proctoring / AI Model
 
 Core files:

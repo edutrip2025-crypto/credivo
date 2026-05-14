@@ -1,8 +1,12 @@
-{
+﻿{
   "version": 2,
+  "buildCommand": "cd app/web_assessment_react && npm install && npm run build",
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 60
+    }
+  },
   "routes": [
-    { "src": "/assets/(.*)", "dest": "/api/index" },
-    { "src": "/media/(.*)", "dest": "/api/index" },
-    { "src": "/(.*)", "dest": "/api/index" }
+    { "src": "/(.*)", "dest": "api/index.py" }
   ]
 }
