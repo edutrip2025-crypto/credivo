@@ -15,6 +15,7 @@ from app.api.router import api_router
 from app.core.config import get_settings
 from app.core.ops_metrics import ops_metrics
 from app.core.rate_limit import InMemoryRateLimiter, LimitRule
+from app.db.session import DATABASE_CONFIG_ERROR
 from app.db.init_db import init_db
 
 settings = get_settings()
@@ -95,11 +96,24 @@ def on_startup() -> None:
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+        "database_configured": DATABASE_CONFIG_ERROR is None,
+        "database_error": DATABASE_CONFIG_ERROR,
+    }
 
 
 @app.get("/site.webmanifest")
 def site_webmanifest():
+    return Response(status_code=204)
+
+
+@app.get("/favicon.ico")
+@app.get("/favicon.png")
+def favicon():
+    icon_file = ASSESSMENT_WEB_DIST_DIR / "credivo_logo.png"
+    if icon_file.exists():
+        return FileResponse(str(icon_file))
     return Response(status_code=204)
 
 

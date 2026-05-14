@@ -1,6 +1,6 @@
 from sqlalchemy import text
 
-from app.db.session import SessionLocal, engine
+from app.db.session import DATABASE_CONFIG_ERROR, SessionLocal, engine
 from app.models.entities import Base, ProctorDatasetSource
 from app.services.account_rules import sync_existing_accounts
 
@@ -489,6 +489,8 @@ def _migrate_provider_feedback_schema_postgres(conn) -> None:
 
 
 def init_db() -> None:
+    if DATABASE_CONFIG_ERROR:
+        return
     Base.metadata.create_all(bind=engine)
     if engine.dialect.name == "sqlite":
         with engine.begin() as conn:

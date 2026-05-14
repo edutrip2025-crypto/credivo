@@ -149,7 +149,7 @@ class Settings(BaseSettings):
         path = Path(raw)
         if path.is_absolute():
             return str(path)
-        return "/tmp/certora-media"
+        return "/tmp/credivo-media"
 
     @property
     def admin_email_set(self) -> set[str]:
